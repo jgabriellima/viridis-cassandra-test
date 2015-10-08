@@ -4,6 +4,8 @@ Projeto com a utilização das principais funções de agregação no Apache Cas
 ### Requisitos
 - Cassandra 2.2
 - Java 8
+- Ajustar a configuração em cassandra.yaml
+-- enable_user_defined_functions: true
 
 ### Execução
 Para rodar o projeto é necessário criar persistir a base no cassandra. Para isso basta acessar o cqlsh e executar os comandos: 

@@ -1091,3 +1091,30 @@ INSERT INTO jgl.medidor (id, valor, medidor) VALUES (1450321200000,50083,'MEDIDO
 INSERT INTO jgl.medidor (id, valor, medidor) VALUES (1450407600000,55767,'MEDIDOR_1');
 INSERT INTO jgl.medidor (id, valor, medidor) VALUES (1450494000000,58755,'MEDIDOR_2');
 INSERT INTO jgl.medidor (id, valor, medidor) VALUES (1450580400000,95717,'MEDIDOR_2');
+
+
+CREATE FUNCTION maximo(atual int, novo_valor int)
+CALLED ON NULL INPUT
+RETURNS int LANGUAGE java AS
+'if (atual == null) return novo_valor; else return Math.max(atual, novo_valor);' ;
+
+CREATE AGGREGATE maximo(int)
+SFUNC maximo
+STYPE int
+INITCOND null;
+
+CREATE FUNCTION minimo(atual int, novo_valor int)
+CALLED ON NULL INPUT
+RETURNS int LANGUAGE java AS
+'if (atual == null) return novo_valor; else return Math.min(atual, novo_valor);' ;
+
+CREATE AGGREGATE minimo(int)
+SFUNC minimo
+STYPE int
+INITCOND null;
+
+CREATE FUNCTION linear(valor int)
+CALLED ON NULL INPUT
+RETURNS int LANGUAGE java AS
+'if (valor == null) return 0; else return valor*2+3;' ;
+
